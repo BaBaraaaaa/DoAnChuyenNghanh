@@ -1,0 +1,16 @@
+
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3305/QLStoreJelly?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      #      ddl-auto: none # Chỉ định cách Hibernate quản lý cấu trúc cơ sở dữ liệu
+      # cấu hình hibernate sẽ thực hiện theo việc đặt tên csdl trên quy tắc vật lý
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      format_sql: true
+    show-sql: true # Hiển thị các truy vấn SQL trong logs
