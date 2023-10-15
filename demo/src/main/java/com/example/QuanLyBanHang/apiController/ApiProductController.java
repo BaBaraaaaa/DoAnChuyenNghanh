@@ -87,8 +87,8 @@ public class ApiProductController {
     @PostMapping
     public  ResponseEntity<?> createProduct(@RequestBody FormCreateProduct formCreateProduct )
     {
-        Product product = productService.CreateProduct(formCreateProduct);
-        return  new ResponseEntity<Product>(product,HttpStatus.OK);
+         productService.CreateProduct(formCreateProduct);
+        return  new ResponseEntity<>("Create Product Successfully",HttpStatus.OK);
     }
 
 

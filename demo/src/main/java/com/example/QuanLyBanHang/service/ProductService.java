@@ -10,25 +10,13 @@ import java.util.List;
 public interface ProductService {
 	List<Product> getAllProduct();
 	
-	Product CreateProduct(FormCreateProduct product);
+	void CreateProduct(FormCreateProduct product);
 
 	public Product getProductById(int id);
 
-	Product updateProduct(Product product);
-
 	void deleteProductById(int id);
-	
-	List<Product> findByProduct_NameContaining(String name);
-	
-	List<Product> findTop12ProductBestSellers();
-	
-	List<Product> findTop12ProductNewArrivals();
+	void UpdateProductById(int id);
 
-	Page<Product> findAll(Pageable pageable);
 
-	Page<Product> findByProduct_NameContaining(String name, Pageable pageable);
 
-	Page<Product> findByProduct_NameAndCategory_idContaining(String name, int category_id, Pageable pageable);
-
-	List<Product> findTop4ProductByCategory_id(int name);
 }

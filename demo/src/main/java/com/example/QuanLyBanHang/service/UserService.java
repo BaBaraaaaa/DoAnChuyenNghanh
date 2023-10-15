@@ -1,14 +1,15 @@
 package com.example.QuanLyBanHang.service;
 
 
-import com.example.QuanLyBanHang.Dto.UserCreateForm;
+//import com.example.QuanLyBanHang.Dto.UserCreateForm;
+import com.example.QuanLyBanHang.FormCreateandUpdate.FormCreateUser;
 import com.example.QuanLyBanHang.entity.User;
 
 import java.util.List;
 
 public interface UserService {
 	List<User> getAllUser();
-	User createUser(UserCreateForm userCreateForm);
+	User createUser(FormCreateUser form);
 	User saveUser(User user);
 
 	User getUserById(int id);

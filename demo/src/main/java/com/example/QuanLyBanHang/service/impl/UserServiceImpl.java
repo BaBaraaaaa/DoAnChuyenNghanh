@@ -2,7 +2,8 @@ package com.example.QuanLyBanHang.service.impl;
 
 
 
-import com.example.QuanLyBanHang.Dto.UserCreateForm;
+//import com.example.QuanLyBanHang.Dto.UserCreateForm;
+import com.example.QuanLyBanHang.FormCreateandUpdate.FormCreateUser;
 import com.example.QuanLyBanHang.entity.User;
 import com.example.QuanLyBanHang.repository.UserRepository;
 import com.example.QuanLyBanHang.service.UserService;
@@ -78,16 +79,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User createUser(UserCreateForm userCreateForm) {
+	public User createUser(FormCreateUser form) {
 		User user = new User();
-		user.setUser_Name(userCreateForm.getUserName());
-		user.setAvatar(userCreateForm.getAvatar());
-		user.setEmail(userCreateForm.getEmail());
-		user.setLogin_Type(userCreateForm.getLoginType());
-		user.setPassword(userCreateForm.getPassword());
-		user.setPhone_Number(userCreateForm.getPhoneNumber());
-		user.setRole(userCreateForm.getRole());
-		user.setFull_name(userCreateForm.getFullName());
+		user.setUser_Name(form.getUser_name());
+		user.setAvatar(form.getAvatar());
+		user.setEmail(form.getEmail());
+		user.setLogin_Type(form.getLogin_type());
+		user.setPassword(form.getPassword());
+		user.setPhone_Number(form.getPhone_number());
+		user.setRole(form.getRole());
+		user.setFull_name(form.getFull_name());
 		return userRepository.save(user);
 	}
 }

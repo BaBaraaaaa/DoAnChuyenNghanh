@@ -29,6 +29,7 @@ public class ProductServiceImpl implements ProductService {
 	ProductImageService productImageService;
 	@Autowired
 	ProdcutImageRepository productImageRepository;
+
 	@Autowired
 	CategoryService categoryService;
 	@Override
@@ -37,25 +38,20 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product CreateProduct(FormCreateProduct product) {
+	public void CreateProduct(FormCreateProduct form) {
 
-		Category category = categoryService.getCategoryById(product.getCategoryId());
-
-		List<ProductImage> productImages = new ArrayList<>();
-		ProductImage productImage = new ProductImage();
-		productImage.setProduct(productRepository.findById(product.getProductId()).get());
-		productImage.setUrl_Image(product.getProductImages().getUrlImage());
-		productImage.setId(product.getProductImages().getId());
-		productImages.add(productImage);
-
-		Product product1 = new Product(product.getProductId(),product.getProductName(),
-				product.getDescription(),product.getSold(),
-				product.getIsActive(),product.getIsSelling(), product.getCreatedAt()
-				,product.getPrice(),product.getQuantity(),
-				category,productImages);
-
-
-		return productRepository.save(product1);
+		Category category = categoryService.getCategoryById(form.getCategoryId());
+		Product product = new Product();
+		product.setProduct_Name(form.getProductName());
+		product.setDescription(form.getDescription());
+		product.setSold(form.getSold());
+		product.setIs_Active(form.getIsActive());
+		product.setIs_Selling(form.getIsSelling());
+		product.setCreated_At(form.getCreatedAt());
+		product.setPrice(form.getPrice());
+		product.setQuantity(form.getQuantity());
+		product.setCategory(category);
+		 productRepository.save(product);
 	}
 
 
@@ -65,10 +61,7 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findById(id).get();
 	}
 
-	@Override
-	public Product updateProduct(Product product) {
-		return null;
-	}
+
 
 	@Override
 	public void deleteProductById(int id) {
@@ -76,37 +69,17 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> findByProduct_NameContaining(String name) {
-		return null;
+	public void UpdateProductById(int id) {
+		Product product = productRepository.findById(id).get();
+
+
 	}
 
-	@Override
-	public List<Product> findTop12ProductBestSellers() {
-		return productRepository.findTop12ProductBestSellers();
-	}
 
-	@Override
-	public List<Product> findTop12ProductNewArrivals() {
-		return productRepository.findTop12ProductNewArrivals();
-	}
 
-	@Override
-	public Page<Product> findAll(Pageable pageable) {
-		return productRepository.findAll(pageable);
-	}
 
-	@Override
-	public Page<Product> findByProduct_NameContaining(String name, Pageable pageable) {
-		return null;
-	}
 
-	@Override
-	public Page<Product> findByProduct_NameAndCategory_idContaining(String name, int category_id, Pageable pageable) {
-		return productRepository.findByProduct_NameAndCategory_idContaining(name,category_id,pageable);
-	}
 
-	@Override
-	public List<Product> findTop4ProductByCategory_id(int name) {
-		return null;
-	}
+
+
 }

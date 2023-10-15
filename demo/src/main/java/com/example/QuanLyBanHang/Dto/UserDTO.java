@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data// hỗ trợ get các contrustor từ lombok
-public class UserCreateForm {
+public class UserDTO {
     private String avatar;
     private String email;
     private String loginType;
