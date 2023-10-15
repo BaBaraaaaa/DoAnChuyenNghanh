@@ -22,8 +22,9 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<Cart> GetAllCartByUser_id(int user_id) {
-        return cartRepository.findAllByUser_id(user_id);
+        return null;
     }
+
 
     @Override
     public void saveCart(Cart cart) {

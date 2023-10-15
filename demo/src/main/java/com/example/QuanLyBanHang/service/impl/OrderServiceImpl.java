@@ -26,25 +26,8 @@ public class OrderServiceImpl implements OrderService {
 		return null;
 	}
 
-	@Override
-	public Order findById(int id) {
-		return null;
-	}
 
-	@Override
-	public List<Order> findAll() {
-		return orderRepository.findAll();
-	}
 
-	@Override
-	public List<Order> findTop5RecentOrder() {
-		return null;
-	}
-
-	@Override
-	public List<String> findTop5RecentCustomer() {
-		return orderRepository.findTop5RecentCustomer();
-	}
 
 	@Override
 	public Page<Order> findAll(Pageable pageable) {
@@ -56,13 +39,5 @@ public class OrderServiceImpl implements OrderService {
 
 	}
 
-	@Override
-	public List<Order> findAllByPayment_Method(String payment_Method) {
-		return null;
-	}
 
-	@Override
-	public List<Order> findTop5OrderByPaymentMethod(String payment_method) {
-		return null;
-	}
 }
