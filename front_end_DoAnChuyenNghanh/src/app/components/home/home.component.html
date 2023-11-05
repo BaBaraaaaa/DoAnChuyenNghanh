@@ -1,0 +1,48 @@
+
+<section class="product spad">
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <ul class="filter__controls">
+        <!-- <li  data-filter="*">Special</li> -->
+        <li class="active" data-filter=".new-arrivals">New Arrivals</li>
+        <li data-filter=".hot-sales">Best Sellers</li>
+      </ul>
+    </div>
+    <div class="row product__filter">
+      <div *ngFor="let item of products"
+      class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales"
+      style="display: none;">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div class="product__item sale">
+            <div class="product__item__pic set-bg">
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{item.productName}}</mat-card-title>
+          <!-- <img mat-card-image [srcset]="item.productImages[0].urlImage" alt="áo quần"> -->
+          <img mat-card-image [src]="item.productImages[0].urlImage">
+          <mat-card-subtitle></mat-card-subtitle>
+          </div>
+
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{item.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button >đánh giá</button>
+          <!-- <button mat-button *ngIf="!user" onclick="alert('Vui lòng đăng Nhập')">đánh giá</button> -->
+          <!-- <button mat-button >Add to Cart</button> -->
+          <button mat-button  *ngIf="!user" onclick="alert('Vui lòng đăng Nhập')" >Add to Cart</button>
+          <button mat-button  *ngIf="user" (click)="onAddtoCart(item.id)" >Add to Cart</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    </div>
+  </div>
+  </div>
+  </section>
+  <!-- Product Section End -->

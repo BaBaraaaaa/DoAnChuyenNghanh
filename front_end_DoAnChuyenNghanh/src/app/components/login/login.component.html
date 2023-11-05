@@ -1,0 +1,11 @@
+<form [formGroup]="loginF" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="userName">Username:</label>
+    <input type="text" id="username" formControlName="userName">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password">
+  </div>
+  <button type="submit" [disabled]="loginF.invalid">Đăng nhập</button>
+</form>
