@@ -30,6 +30,7 @@ public class APIUserController {
         for (User user : userList)
         {
             UserDTO userDTO = new UserDTO();
+            userDTO.setId(user.getId());
             userDTO.setUserName(user.getUser_Name());
             userDTO.setPassword(user.getPassword());
             userDTO.setAvatar(user.getAvatar());
@@ -52,6 +53,6 @@ public class APIUserController {
     ResponseEntity<?> CreateUser(@RequestBody FormCreateUser form)
     {
         User user = userService.createUser(form);
-        return new ResponseEntity<>("Create successfully!" ,HttpStatus.CREATED);
+        return new ResponseEntity<User>(user ,HttpStatus.CREATED);
     }
 }

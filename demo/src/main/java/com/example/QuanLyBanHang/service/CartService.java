@@ -1,6 +1,8 @@
 package com.example.QuanLyBanHang.service;
 
+import com.example.QuanLyBanHang.Dto.ProductDto;
 import com.example.QuanLyBanHang.entity.Cart;
+import com.example.QuanLyBanHang.entity.Product;
 
 import java.util.List;
 

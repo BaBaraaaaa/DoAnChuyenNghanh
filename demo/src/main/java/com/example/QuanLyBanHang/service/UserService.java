@@ -8,10 +8,12 @@ import com.example.QuanLyBanHang.entity.User;
 import java.util.List;
 
 public interface UserService {
+
 	List<User> getAllUser();
 	User createUser(FormCreateUser form);
 	User saveUser(User user);
 
+	User loginUserNameadnPassword(String  userName,String Password);
 	User getUserById(int id);
 
 	User getUserByUser_nameandRole(String name, String role);

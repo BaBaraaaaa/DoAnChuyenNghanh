@@ -16,7 +16,7 @@ public interface ProductService {
 
 	void deleteProductById(int id);
 	void UpdateProductById(int id);
-
+	List<Product> getAllProductInCartByUser_id(int user_id);
 
 
 }

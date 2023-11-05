@@ -1,12 +1,20 @@
 package com.example.QuanLyBanHang.service.impl;
 
+import com.example.QuanLyBanHang.Dto.ProductDto;
 import com.example.QuanLyBanHang.entity.Cart;
+import com.example.QuanLyBanHang.entity.Product;
+import com.example.QuanLyBanHang.entity.User;
 import com.example.QuanLyBanHang.repository.CartRepository;
+import com.example.QuanLyBanHang.repository.ProductRepository;
 import com.example.QuanLyBanHang.repository.UserRepository;
 import com.example.QuanLyBanHang.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 @Service
 public class CartServiceImpl implements CartService {
@@ -14,6 +22,8 @@ public class CartServiceImpl implements CartService {
     CartRepository cartRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ProductRepository productRepository;
     @Override
     public void deleteById(int id) {
         cartRepository.deleteById(id);
@@ -22,7 +32,18 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<Cart> GetAllCartByUser_id(int user_id) {
-        return null;
+        User user = userRepository.findById(user_id).get();
+        List<Cart> list = cartRepository.findAll();
+        List<Cart> carts = new ArrayList<>();
+        for (Cart cart : list)
+        {
+            if (cart.getUser().getId() == user_id)
+            {
+                carts.add(cart);
+            }
+
+        }
+        return carts;
     }
 
 
@@ -31,6 +52,8 @@ public class CartServiceImpl implements CartService {
         cartRepository.save(cart);
 
     }
+
+
 
 
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @Data// hỗ trợ get các contrustor từ lombok
 public class UserDTO {
+    private int id;
     private String avatar;
     private String email;
     private String loginType;

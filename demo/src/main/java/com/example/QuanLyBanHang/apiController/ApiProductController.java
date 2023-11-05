@@ -91,5 +91,34 @@ public class ApiProductController {
         return  new ResponseEntity<>("Create Product Successfully",HttpStatus.OK);
     }
 
+//    @GetMapping
+//    public  ResponseEntity<?> getProductBestSeller()
+//    {
+//        List<Product> productList = productService.getAllProduct();
+//        ArrayList<ProductDto> productDtos = new ArrayList<>();
+//        for (Product product : productList)
+//        {
+//
+//            Category category = categoryService.getCategoryById(product.getCategory().getId());
+//            System.out.println(category.getId() +"    "+ category.getCategory_Name() );
+//            List<ProductImage> productImages = productImageService.getAllbyId(product.getId());
+//            ArrayList<ProductImageDTO> productImageDTOS = new ArrayList<>();
+//            for (ProductImage productImage : productImages)
+//            {
+//                ProductImageDTO productImageDTO = new ProductImageDTO();
+//                productImageDTO.setId(productImage.getId());
+//                productImageDTO.setUrlImage(productImage.getUrl_Image());
+//                productImageDTO.setProductId(productImage.getProduct().getId());
+//                productImageDTOS.add(productImageDTO);
+//            }
+//
+//            ProductDto productDto = new ProductDto(product.getId(),product.getProduct_Name(),product.getDescription(),product.getSold()
+//                    ,product.getIs_Active(),product.getIs_Selling(),product.getCreated_At(),product.getPrice(),product.getQuantity()
+//                    ,category.getCategory_Name(),productImageDTOS);
+//            productDtos.add(productDto);
+//        }
+//return null;
+//    }
+
 
 }

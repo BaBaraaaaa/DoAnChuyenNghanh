@@ -68,6 +68,23 @@ public class User implements Serializable {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login_Type='" + login_Type + '\'' +
+                ", role='" + role + '\'' +
+                ", password='" + password + '\'' +
+                ", user_Name='" + user_Name + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", email='" + email + '\'' +
+                ", phone_Number='" + phone_Number + '\'' +
+                ", full_name='" + full_name + '\'' +
+                ", order=" + order +
+                ", cart=" + cart +
+                '}';
+    }
+
     public void setId(int id) {
         this.id = id;
     }

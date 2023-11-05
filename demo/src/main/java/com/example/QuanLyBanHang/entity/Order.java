@@ -176,4 +176,23 @@ public class Order implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", total=" + total +
+                ", booking_Date=" + booking_Date +
+                ", payment_Method='" + payment_Method + '\'' +
+                ", status='" + status + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", country='" + country + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", note='" + note + '\'' +
+                ", order_Item=" + order_Item +
+                ", user=" + user +
+                '}';
+    }
 }
