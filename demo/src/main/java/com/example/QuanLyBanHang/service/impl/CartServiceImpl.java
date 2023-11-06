@@ -53,7 +53,10 @@ public class CartServiceImpl implements CartService {
 
     }
 
-
+    @Override
+    public List<Cart> findAllByUser_id(int user_id) {
+        return cartRepository.findAllByUser_id(user_id);
+    }
 
 
 }

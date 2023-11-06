@@ -59,7 +59,7 @@ public class ApiProductController {
 
           ProductDto productDto = new ProductDto(product.getId(),product.getProduct_Name(),product.getDescription(),product.getSold()
                   ,product.getIs_Active(),product.getIs_Selling(),product.getCreated_At(),product.getPrice(),product.getQuantity()
-          ,category.getCategory_Name(),productImageDTOS);
+          ,category.getId(),productImageDTOS);
           productDtos.add(productDto);
       }
 
@@ -81,7 +81,7 @@ public class ApiProductController {
         }
         ProductDto productDto = new ProductDto(product.getId(),product.getProduct_Name(),product.getDescription(),product.getSold(),
                 product.getIs_Active(),product.getIs_Selling(),product.getCreated_At(),product.getPrice(),product.getQuantity()
-                ,product.getCategory().getCategory_Name(),productImageDTOS);
+                ,product.getCategory().getId(),productImageDTOS);
             return  new ResponseEntity<>(productDto,HttpStatus.OK);
     }
     @PostMapping

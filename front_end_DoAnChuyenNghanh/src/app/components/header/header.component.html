@@ -84,7 +84,7 @@
           <nav class="header__menu mobile-menu">
             <ul>
               <li class="active"><a href="" (click)="onBackHome()">Home</a></li>
-              <li><a th:href="@{/shop}">Shop</a></li>
+              <li><a href="" [routerLink]="['shop']">Shop</a></li>
               <li><a href="#">Pages</a>
                 <ul class="dropdown">
                   <li><a th:href="@{/cart}">Shopping Cart</a></li>

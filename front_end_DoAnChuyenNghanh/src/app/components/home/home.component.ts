@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { count } from 'rxjs';
 import { AppService } from 'src/app/services/app.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -9,8 +10,10 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
+
   products : Array<any> = new Array;
   user : any;
+
   checkUser : boolean = false;
   constructor(private app: AppService ,private loginserv: LoginService){}
 
@@ -51,6 +54,7 @@ export class HomeComponent implements OnInit{
       {
         console.log(err);
         alert("thêm vào giỏ hàng thành công");
+
 
       }
       console.error(err);

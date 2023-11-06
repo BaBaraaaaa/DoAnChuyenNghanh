@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
+import { ShopComponent } from './components/shop/shop.component';
 
 const routes: Routes = [
   //định nghĩa các route
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: '',component:HomeComponent},
   {path: 'login',component:LoginComponent},
   {path: 'register',component:RegisterComponent},
-  {path:'cart',component:CartComponent}
+  {path:'cart',component:CartComponent},
+  {path:'shop',component:ShopComponent}
 
 ];
 

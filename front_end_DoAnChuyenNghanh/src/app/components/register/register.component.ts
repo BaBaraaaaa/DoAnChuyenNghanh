@@ -60,27 +60,7 @@ export class  RegisterComponent   {
 
       }
       );
-    // this.register.register(this.body).subscribe
-    // ((res: any)=>
-    // {
-    //   if (res == null) {
-    //     alert("lỗi");
-    //   } else if (res != null) {
-    //     console.log(res);
-    //     alert("đăng ký thành công!");
-    //     let jsonData = JSON.stringify(res);
-    //     sessionStorage.setItem('user',jsonData);
-    //     location.assign('http://localhost:4200/')
 
-    //   }
-    // },(error: HttpErrorResponse) => {
-    //   {
-    //     console.error('Error:', error.error);
-    //     alert(error.statusText)
-    //   }
-
-
-    // });
   }
 
 

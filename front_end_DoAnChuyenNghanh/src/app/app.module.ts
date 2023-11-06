@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { CartComponent } from './components/cart/cart.component';
+import { ShopComponent } from './components/shop/shop.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { CartComponent } from './components/cart/cart.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    CartComponent
+    CartComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

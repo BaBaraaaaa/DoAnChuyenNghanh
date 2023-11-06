@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface CartRepository  extends JpaRepository<Cart,Integer> {
-//    @Query("SELECT product_id FROM Cart c WHERE c.user_id = :user_id")
-//    List<Cart> findAllByUser_id(int user_id);
+    @Query(value = "SELECT * FROM Cart c WHERE c.user_id = :user_id",nativeQuery = true)
+    List<Cart> findAllByUser_id(int user_id);
 
 }

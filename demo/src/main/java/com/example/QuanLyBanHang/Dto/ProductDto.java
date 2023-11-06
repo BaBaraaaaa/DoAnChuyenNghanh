@@ -15,7 +15,7 @@ public class ProductDto {
     private Date createdAt;
     private int price;
     private int quantity;
-    private String categoryName;
+    private int category_id;
     private List<ProductImageDTO> productImages;
 
 
@@ -92,12 +92,12 @@ public class ProductDto {
         this.quantity = quantity;
     }
 
-    public String getCategoryId() {
-        return categoryName;
+    public int getCategoryId() {
+        return category_id;
     }
 
-    public void setCategoryId(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCategoryId(int categoryName) {
+        this.category_id = categoryName;
     }
 
     public List<ProductImageDTO> getProductImages() {
@@ -108,7 +108,7 @@ public class ProductDto {
         this.productImages = productImages;
     }
 
-    public ProductDto(int id, String productName, String description, int sold, int isActive, int isSelling, Date createdAt, int price, int quantity, String categoryName, List<ProductImageDTO> productImages) {
+    public ProductDto(int id, String productName, String description, int sold, int isActive, int isSelling, Date createdAt, int price, int quantity, int category_id, List<ProductImageDTO> productImages) {
         this.id = id;
         this.productName = productName;
         this.description = description;
@@ -118,7 +118,7 @@ public class ProductDto {
         this.createdAt = createdAt;
         this.price = price;
         this.quantity = quantity;
-        this.categoryName = categoryName;
+        this.category_id = category_id;
         this.productImages = productImages;
     }
 

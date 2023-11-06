@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from 'src/app/services/login.service';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit{
   hidden = false;
   isLogined : boolean = false;
   user : any;
-  constructor( private loginSrv: LoginService , private route : Router){}
+  constructor( private loginSrv: LoginService , private route : Router,private app: AppService){}
   ngOnInit(): void {
     if(this.loginSrv.checkLogin())
     {
@@ -39,5 +40,6 @@ export class HeaderComponent implements OnInit{
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
   }
+
 
 }

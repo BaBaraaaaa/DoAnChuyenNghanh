@@ -1,5 +1,6 @@
 package com.example.QuanLyBanHang.apiController;
 
+import com.example.QuanLyBanHang.Dto.CartDTO;
 import com.example.QuanLyBanHang.Dto.ProductDto;
 import com.example.QuanLyBanHang.Dto.ProductImageDTO;
 import com.example.QuanLyBanHang.entity.*;
@@ -27,7 +28,7 @@ public class ApiCartController {
     CategoryService categoryService;
     @Autowired
     ProductImageService productImageService;
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/user/{id}")
     ResponseEntity<?> getProductInCartByUser_id(@PathVariable int id)
     {
         User user = userService.getUserById(id);
@@ -60,7 +61,7 @@ public class ApiCartController {
 
             ProductDto productDto = new ProductDto(product.getId(),product.getProduct_Name(),product.getDescription(),product.getSold()
                     ,product.getIs_Active(),product.getIs_Selling(),product.getCreated_At(),product.getPrice(),product.getQuantity()
-                    ,category.getCategory_Name(),productImageDTOS);
+                    ,category.getId(),productImageDTOS);
             productDtos.add(productDto);
         }
 
@@ -123,6 +124,22 @@ public class ApiCartController {
             list = cartService.GetAllCartByUser_id(user.getId());
         }
         return new ResponseEntity<>("xóa sản phẩm khỏi giỏ thành công",HttpStatus.OK);
+    }
+    @GetMapping("{id}")
+    ResponseEntity<List<CartDTO>> getAllCartByUserId(@PathVariable int id)
+    {
+        List<Cart> list =  cartService.findAllByUser_id(id);
+        List<CartDTO> dtoList = new ArrayList<>();
+        for (Cart cart : list)
+        {
+            CartDTO cartDTO = new CartDTO();
+            cartDTO.setId(cart.getId());
+            cartDTO.setCount(cart.getCount());
+            cartDTO.setUser_id(String.valueOf(cart.getUser().getId()));
+            cartDTO.setProduct_id(String.valueOf(cart.getProduct().getId()));
+            dtoList.add(cartDTO);
+        }
+         return new ResponseEntity<List<CartDTO>>(dtoList,HttpStatus.OK);
 
     }
 }

@@ -11,5 +11,5 @@ public interface CartService {
     List<Cart> GetAllCartByUser_id(int user_id);
 
     void saveCart(Cart cart);
-
+    List<Cart> findAllByUser_id(int user_id);
 }

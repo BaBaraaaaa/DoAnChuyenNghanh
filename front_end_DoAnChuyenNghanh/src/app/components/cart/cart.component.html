@@ -13,33 +13,35 @@
 									</tr>
 								</thead>
 								<tbody>
-									<div *ngFor="let item of product" >
-										<tr>
+
+									<div *ngFor=" let item of product"   >
+										<tr *ngFor="let i of cart">
+                      <div *ngIf="i.product_id == item.id">
 											<td class="product__cart__item">
 												<div style="max-width: 90px; max-height: 90px;" class="product__cart__item__pic">
                           <img mat-card-image [src]="item.productImages[0].urlImage">
 												</div>
-
 												<div class="product__cart__item__text">
-													<h6 th:text="${y.product.product_Name}"></h6>
 													<h6 [textContent]="item.productName"></h6>
 													<h5 [textContent]="item.price + ' VNĐ'"></h5>
 												</div>
 											</td>
-											<td class="quantity__item">
+											<td class="quantity__item" >
 												<div class="quantity">
 													<div class="pro-qty-2">
-														<input th:name="'count'+${yStat.index}" type="number" th:value="${y.count}">
-													</div>
+                            <input type="number"  [name]="i.count " [value]="i.count" (change)="onChange($event, i)">
+                          </div>
 												</div>
 											</td>
-											<td class="cart__price"
-												th:text="${#numbers.formatDecimal(y.product.price * y.count, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
+											<td class="cart__price" [textContent]="item.price * i.count"></td>
 											<td class="cart__close">
                         <a href="" (click)="onDeleteProductInCart(item.id)"  >
                           <i class="fa fa-close"></i></a></td>
+                        </div>
 										</tr>
-									</div>
+
+                  </div>
+
 								</tbody>
 							</table>
 						</div>
@@ -49,7 +51,8 @@
 									<a th:href="@{/shop}">Continue Shopping</a>
 								</div>
 							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="col-lg-6 col-md-6 col-sm-6" >
+
 								<div class="continue__btn update__btn">
 									<button formaction="/updateCart">
 										<i class="fa fa-spinner"></i> Update cart
@@ -59,20 +62,20 @@
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<div class="cart__discount">
+						<!-- <div class="cart__discount">
 							<h6>Discount codes</h6>
-							<!-- <form action="#"> -->
+							<form action="#">
 							<input type="text" placeholder="Coupon code">
 							<button type="submit">Apply</button>
-							<!-- </form> -->
-						</div>
+							</form>
+						</div> -->
 						<div class="cart__total">
 							<h6>Cart total</h6>
 							<ul>
-								<li>Customer <span th:text="${session.acc.user_Name}"></span></li>
-								<li>Total <span th:text="${#numbers.formatDecimal(Total, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span></li>
+								<li>Customer <span [textContent]="user.userName"></span></li>
+								<li>Total <span [textContent]="TongGia +' VNĐ'"></span></li>
 							</ul>
-							<a th:href="@{/checkout}" class="primary-btn">Proceed to
+							<a href="" class="primary-btn">Proceed to
 								checkout</a>
 						</div>
 					</div>
