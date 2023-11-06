@@ -1,0 +1,87 @@
+<!-- Shop Section Begin -->
+<section class="shop spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="shop__sidebar">
+          <div class="shop__sidebar__search">
+            <!-- <form th:action="@{/search}" method="POST">
+              <input name="search-input" type="text" placeholder="Search..."
+                th:value="${search_input}">
+              <button type="submit">
+                <span class="icon_search"></span>
+              </button>
+            </form> -->
+          </div>
+          <div class="shop__sidebar__accordion">
+            <div class="accordion" id="accordionExample">
+              <div class="card">
+                <div class="card-heading">
+                  <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                </div>
+                <div id="collapseOne" class="collapse show" data-parent="#accordionExample" >
+                  <div class="card-body">
+                    <div class="shop__sidebar__categories">
+                      <ul class="nice-scroll">
+                        <div *ngFor="let item of category">
+                          <!-- <li><a th:href="@{/category/{id}(id=${y.id})}" th:text="${y.category_Name}"></a></li> -->
+                          <li><a  (click)="onClick(item.id)" [textContent]="item.name"></a></li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="shop__product__option">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="shop__product__option__left">
+                <p ></p>
+                <div  *ngFor="let item of prodInCate"  >
+                  <mat-card class="example-card">
+                    <mat-card-header>
+                      <div class="product__item sale">
+                        <div class="product__item__pic set-bg">
+                      <div mat-card-avatar class="example-header-image"></div>
+                      <mat-card-title >{{item.productName}}</mat-card-title>
+                      <!-- <img mat-card-image [srcset]="item.productImages[0].urlImage" alt="áo quần"> -->
+                      <img mat-card-image [src]="item.productImages[0].urlImage">
+                      <mat-card-subtitle > </mat-card-subtitle>
+                      </div>
+                      </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <p>
+                        {{item.price}}  VNĐ
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-button >đánh giá</button>
+                      <!-- <button mat-button *ngIf="!user" onclick="alert('Vui lòng đăng Nhập')">đánh giá</button> -->
+                      <!-- <button mat-button >Add to Cart</button> -->
+                      <button mat-button  *ngIf="!user" onclick="alert('Vui lòng đăng Nhập')" >Add to Cart</button>
+                      <button mat-button  *ngIf="user" (click)="onAddtoCart(item.id)" >Add to Cart</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row" *ngFor="let i of category"> -->
+
+          </div>
+
+
+
+
+      <!-- </div> -->
+    </div>
+  </div>
+</section>
+<!-- Shop Section End -->
