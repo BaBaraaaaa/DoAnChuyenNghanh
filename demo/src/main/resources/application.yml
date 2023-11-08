@@ -8,6 +8,7 @@ spring:
     password: root
   jpa:
     hibernate:
+      ddl-auto: update
       #      ddl-auto: none # Chỉ định cách Hibernate quản lý cấu trúc cơ sở dữ liệu
       # cấu hình hibernate sẽ thực hiện theo việc đặt tên csdl trên quy tắc vật lý
       naming:

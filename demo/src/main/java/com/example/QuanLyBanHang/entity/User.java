@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data // lombok giúp generate các hàm constructor, get, set v.v.
@@ -20,8 +21,6 @@ public class User implements Serializable {
     @Column(name = "login_Type", columnDefinition = "nvarchar(250)")
     private String login_Type;
 
-    @Column(name = "role", columnDefinition = "nvarchar(250)")
-    private String role;
 
     @Column(name = "password",columnDefinition = "nvarchar(250)")
     private String password;
@@ -47,43 +46,20 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Cart> cart;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
     public User() {
     }
 
-    public User(int id, String login_Type, String role, String password, String user_Name, String avatar, String email, String phone_Number, String full_name, List<Order> order, List<Cart> cart) {
-        this.id = id;
-        this.login_Type = login_Type;
-        this.role = role;
-        this.password = password;
-        this.user_Name = user_Name;
-        this.avatar = avatar;
-        this.email = email;
-        this.phone_Number = phone_Number;
-        this.full_name = full_name;
-        this.order = order;
-        this.cart = cart;
-    }
 
     public int getId() {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login_Type='" + login_Type + '\'' +
-                ", role='" + role + '\'' +
-                ", password='" + password + '\'' +
-                ", user_Name='" + user_Name + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", email='" + email + '\'' +
-                ", phone_Number='" + phone_Number + '\'' +
-                ", full_name='" + full_name + '\'' +
-                ", order=" + order +
-                ", cart=" + cart +
-                '}';
-    }
+
 
     public void setId(int id) {
         this.id = id;
@@ -97,13 +73,7 @@ public class User implements Serializable {
         this.login_Type = login_Type;
     }
 
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getPassword() {
         return password;

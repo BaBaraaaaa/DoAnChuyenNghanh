@@ -51,14 +51,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User>  getListUsernameAndRole(String user_Name,String role) {
-		List<User> adminUsers = new ArrayList<>();
-		List<User> allUsers = userRepository.findAll();
-		for (User user : allUsers) {
-			if (user.getUser_Name().equals(user_Name) && user.getRole().equals(role) ) {
-				adminUsers.add(user);
-			}
-		}
-		return  adminUsers;
+//		List<User> adminUsers = new ArrayList<>();
+//		List<User> allUsers = userRepository.findAll();
+//		for (User user : allUsers) {
+//			if (user.getUser_Name().equals(user_Name) && user.getRole().equals(role) ) {
+//				adminUsers.add(user);
+//			}
+//		}
+//		return  adminUsers;
+		return null;
 	}
 	@Override
 	public List<User> findAll() {
@@ -72,16 +73,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserByUser_nameandRole(String name, String role) {
-		List<User> user = userRepository.findAll();
-		User users = new User();
-		for (User user1 : user)
-		{
-			if (user1.getUser_Name().equals(name) && user1.getRole().equals("user"))
-			{
-				users = user1;
-			}
-		}
-		return users;
+//		List<User> user = userRepository.findAll();
+//		User users = new User();
+//		for (User user1 : user)
+//		{
+//			if (user1.getUser_Name().equals(name) && user1.getRole().equals("user"))
+//			{
+//				users = user1;
+//			}
+//		}
+//		return users;
+		return null;
 	}
 
 	@Override
@@ -93,7 +95,7 @@ public class UserServiceImpl implements UserService {
 		user.setLogin_Type(form.getLogin_type());
 		user.setPassword(form.getPassword());
 		user.setPhone_Number(form.getPhone_number());
-		user.setRole(form.getRole());
+//		user.setRole(form.getRole());
 		user.setFull_name(form.getFull_name());
 		return userRepository.save(user);
 	}

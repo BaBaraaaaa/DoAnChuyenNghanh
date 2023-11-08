@@ -34,7 +34,7 @@ public class APIUserController {
             userDTO.setUserName(user.getUser_Name());
             userDTO.setPassword(user.getPassword());
             userDTO.setAvatar(user.getAvatar());
-            userDTO.setRole(user.getRole());
+
             userDTO.setEmail(user.getEmail());
             userDTO.setFullName(user.getFull_name());
             userDTO.setLoginType(user.getLogin_Type());
