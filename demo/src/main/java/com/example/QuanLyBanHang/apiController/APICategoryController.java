@@ -7,12 +7,13 @@ import com.example.QuanLyBanHang.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 @RestController
-@CrossOrigin("*")
+
 @RequestMapping("/api/v1/category")
 public class APICategoryController {
 
@@ -44,7 +45,17 @@ public class APICategoryController {
     @PostMapping
     ResponseEntity<?> CreateCategory(@RequestBody FormCreateCategory form)
     {
+//        if (!SecurityContextHolder.getContext().getAuthentication().isAuthenticated())
+//        {
+//            return new ResponseEntity<>("Không có quyền thêm danh mục" , HttpStatus.OK);
+//        }
         Category category = categoryService.CreateCategory(form);
     return new ResponseEntity<Category>(category , HttpStatus.OK);
+    }
+    @DeleteMapping(value = "/{id}")
+    ResponseEntity<?> DeleteCategory(@PathVariable int id)
+    {
+        categoryService.deleteCategoryId(id);
+        return new ResponseEntity<>("đã xóa thành công ",HttpStatus.OK );
     }
 }

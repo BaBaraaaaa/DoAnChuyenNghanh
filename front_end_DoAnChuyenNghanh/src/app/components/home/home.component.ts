@@ -13,11 +13,13 @@ export class HomeComponent implements OnInit{
 
   products : Array<any> = new Array;
   user : any;
-
+  checkRole:boolean = this.loginserv.checkRole();
   checkUser : boolean = false;
   constructor(private app: AppService ,private loginserv: LoginService){}
 
   ngOnInit(): void {
+    console.log(this.checkRole);
+
     this.user = this.loginserv.checkLogin();
     if(this.user != null)
     {

@@ -1,45 +1,35 @@
 package com.example.QuanLyBanHang.service.impl;
 
-
 import com.example.QuanLyBanHang.entity.ProductImage;
-import com.example.QuanLyBanHang.repository.ProdcutImageRepository;
+import com.example.QuanLyBanHang.repository.ProductImageRepository;
 import com.example.QuanLyBanHang.service.ProductImageService;
-import com.example.QuanLyBanHang.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ProductImageServiceImpl implements ProductImageService {
-	@Autowired
-	ProdcutImageRepository prodcutImageRepository;
+    @Autowired
+    ProductImageRepository productImageRepository;
+    @Override
+    public void save(ProductImage productImage) {
+        productImageRepository.save(productImage);
+    }
 
-	@Override
-	public void save(ProductImage productImage) {
-	prodcutImageRepository.save(productImage);
-	}
+    @Override
+    public List<ProductImage> PRODUCT_IMAGE_LIST(int id) {
+        return productImageRepository.findAllByProductId(id);
+    }
 
-	@Override
-	public void deleteById(int id) {
-		prodcutImageRepository.deleteById(id);
+    @Override
+    public List<ProductImage> findAll() {
+        return productImageRepository.findAll();
+    }
 
-	}
+    @Override
+    public void deleteById(int id) {
+        productImageRepository.deleteById(id);
 
-	@Override
-	public List<ProductImage> getAllbyId(int id) {
-		List<ProductImage> productImages = prodcutImageRepository.findAll();
-		List<ProductImage>productImages1 = new ArrayList<>();
-		for (ProductImage productImage : productImages)
-		{
-			if (productImage.getProduct().getId() == id )
-			{
-				ProductImage productImage1 = productImage;
-				productImages1.add(productImage1);
-			}
-
-		}
-		return productImages1;
-	}
+    }
 }

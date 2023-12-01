@@ -41,9 +41,11 @@ public class Product implements Serializable {
 
     @Column(name = "quantity")
     private int quantity;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductImage> productImage;
 
@@ -133,13 +135,7 @@ public class Product implements Serializable {
         this.category = category;
     }
 
-    public List<ProductImage> getProductImage() {
-        return productImage;
-    }
 
-    public void setProductImage(List<ProductImage> productImage) {
-        this.productImage = productImage;
-    }
 
     public List<Order_Item> getOrder_Item() {
         return order_Item;
@@ -157,40 +153,10 @@ public class Product implements Serializable {
         this.cart = cart;
     }
 
-    public Product(int id, String product_Name, String description, int sold, int is_Active, int is_Selling, Date created_At, int price, int quantity, Category category, List<ProductImage> productImage) {
-        this.id = id;
-        this.product_Name = product_Name;
-        this.description = description;
-        this.sold = sold;
-        this.is_Active = is_Active;
-        this.is_Selling = is_Selling;
-        this.created_At = created_At;
-        this.price = price;
-        this.quantity = quantity;
-        this.category = category;
-        this.productImage = productImage;
 
-    }
 
     public Product() {
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", product_Name='" + product_Name + '\'' +
-                ", description='" + description + '\'' +
-                ", sold=" + sold +
-                ", is_Active=" + is_Active +
-                ", is_Selling=" + is_Selling +
-                ", created_At=" + created_At +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", category=" + category +
-                ", productImage=" + productImage +
-                ", order_Item=" + order_Item +
-                ", cart=" + cart +
-                '}';
-    }
+
 }

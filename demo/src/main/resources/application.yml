@@ -6,6 +6,19 @@ spring:
     url: jdbc:mysql://localhost:3305/QLStoreJelly?useSSL=false&serverTimezone=UTC
     username: root
     password: root
+    spring:
+      mvc:
+        cors:
+          allowed-origins: "http://localhost:4200"
+          allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+          allowed-headers: "*"
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
   jpa:
     hibernate:
       ddl-auto: update

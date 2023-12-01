@@ -7,6 +7,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ShopComponent } from './components/shop/shop.component';
 
+
+
 const routes: Routes = [
   //định nghĩa các route
 
@@ -14,7 +16,8 @@ const routes: Routes = [
   {path: 'login',component:LoginComponent},
   {path: 'register',component:RegisterComponent},
   {path:'cart',component:CartComponent},
-  {path:'shop',component:ShopComponent}
+  {path:'shop',component:ShopComponent},
+
 
 ];
 

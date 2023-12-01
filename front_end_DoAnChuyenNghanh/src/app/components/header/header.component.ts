@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit{
   hidden = false;
   isLogined : boolean = false;
   user : any;
+  checkRole:boolean = this.loginSrv.checkRole();
   constructor( private loginSrv: LoginService , private route : Router,private app: AppService){}
   ngOnInit(): void {
     if(this.loginSrv.checkLogin())
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit{
     }
 
     console.log(this.isLogined);
+    console.log(this.checkRole);
   }
 
   onLogout()

@@ -31,6 +31,7 @@ onSubmit(): void {
     return;
   }
   sessionStorage.clear();
+
   this.loginser.login(this.loginF.value).subscribe(
     (res: object) => {
       if (res == null) {
@@ -40,12 +41,19 @@ onSubmit(): void {
         alert("đăng nhập thành công!");
         let jsonData = JSON.stringify(res);
         sessionStorage.setItem('user',jsonData);
-        location.assign('http://localhost:4200/')
+        location.assign('http://localhost:4200')
 
       }
 
     },
     (    error: HttpErrorResponse) => {
+      console.log(error.headers);
+      console.log(error.message);
+      console.log(error.url);
+      console.log(error.error);
+      console.log(error.type);
+
+
       if(error.status == 400)
       {
         console.error('Error:', error.error);

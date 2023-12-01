@@ -28,18 +28,20 @@ public class ApiCartController {
     CategoryService categoryService;
     @Autowired
     ProductImageService productImageService;
+
     @GetMapping(value = "/user/{id}")
     ResponseEntity<?> getProductInCartByUser_id(@PathVariable int id)
     {
         User user = userService.getUserById(id);
         if (user == null)
         {
-            return  new ResponseEntity<>("người dùng không tồn tại",HttpStatus.NOT_FOUND);
+            return  new ResponseEntity<String>("người dùng không tồn tại",HttpStatus.NOT_FOUND);
         }
         List<Product> list = productService.getAllProductInCartByUser_id(user.getId());
+
         if (list.isEmpty())
         {
-            return  new ResponseEntity<>("bạn chưa thêm sản phẩm",HttpStatus.OK);
+            return  new ResponseEntity<String>("bạn chưa thêm sản phẩm",HttpStatus.OK);
 
         }
 
@@ -48,17 +50,16 @@ public class ApiCartController {
         {
             Category category = categoryService.getCategoryById(product.getCategory().getId());
             System.out.println(category.getId() +"    "+ category.getCategory_Name() );
-            List<ProductImage> productImages = productImageService.getAllbyId(product.getId());
+            List<ProductImage> productImages = productImageService.PRODUCT_IMAGE_LIST(product.getId());
             ArrayList<ProductImageDTO> productImageDTOS = new ArrayList<>();
             for (ProductImage productImage : productImages)
             {
                 ProductImageDTO productImageDTO = new ProductImageDTO();
-                productImageDTO.setId(productImage.getId());
-                productImageDTO.setUrlImage(productImage.getUrl_Image());
-                productImageDTO.setProductId(productImage.getProduct().getId());
+                productImageDTO.setProduct_id(productImage.getId());
+                productImageDTO.setUrl_Image(productImage.getUrl_Image());
+                productImageDTO.setProduct_id(productImage.getProduct().getId());
                 productImageDTOS.add(productImageDTO);
             }
-
             ProductDto productDto = new ProductDto(product.getId(),product.getProduct_Name(),product.getDescription(),product.getSold()
                     ,product.getIs_Active(),product.getIs_Selling(),product.getCreated_At(),product.getPrice(),product.getQuantity()
                     ,category.getId(),productImageDTOS);
@@ -88,7 +89,7 @@ public class ApiCartController {
             }
             if (cartC == 0) {
                 Cart newCart = new Cart();
-                newCart.setCount(cartC);
+                newCart.setCount(cartC+1);
                 newCart.setProduct(product);
                 newCart.setUser(user);
                 cartService.saveCart(newCart);
@@ -99,30 +100,43 @@ public class ApiCartController {
         return  new ResponseEntity<>("Lỗi",HttpStatus.BAD_REQUEST);
     }
     @DeleteMapping(value = "{id}/{user_id}")
-    ResponseEntity<?> deleteProductInCart(@PathVariable int id,@PathVariable int user_id)
+    ResponseEntity<?> deleteProductInCart(@PathVariable("id") int id,@PathVariable("user_id") int user_id)
     {
-        User user  = userService.getUserById(user_id);
-        if (user==null)
+//        User user  = userService.getUserById(user_id);
+//        if (user==null)
+//        {
+//            return new ResponseEntity<>("Không có user này",HttpStatus.OK);
+//        }
+//            List<Cart> list = cartService.findAllByUser_id(user.getId());
+//            Product product = productService.getProductById(id);
+//            int cartC = list.size();
+//            for (Cart u : list) {
+//                if (u.getProduct().getId() == id) {
+//                    u.setCount(u.getCount());
+//                    cartService.deleteById(u.getId());
+//                    cartC--;
+//                }
+//            }
+//            if (cartC == 0) {
+//               cartService.deleteById(id);
+//            }
+//
+//            list = cartService.findAllByUser_id(user.getId());
+        List<Cart> list = cartService.findAllByUser_id(user_id);
+        int cartC = list.size();
+        for (Cart cart :list)
         {
-            return new ResponseEntity<>("Không có user này",HttpStatus.OK);
-        }
-        if (user!=null) {
-            List<Cart> list = cartService.GetAllCartByUser_id(user.getId());
-            Product product = productService.getProductById(id);
-            int cartC = list.size();
-            for (Cart u : list) {
-                if (u.getProduct().getId() == id) {
-                    u.setCount(u.getCount() - 1);
-                    cartService.deleteById(u.getId());
-                    cartC--;
-                }
+            if (cart.getProduct().getId() == id)
+            {
+                cart.setCount(cart.getCount());
+                cartService.deleteById(cart.getId());
+                cartC--;
+
             }
-            if (cartC == 0) {
+        }
+        if (cartC == 0) {
                cartService.deleteById(id);
             }
-
-            list = cartService.GetAllCartByUser_id(user.getId());
-        }
         return new ResponseEntity<>("xóa sản phẩm khỏi giỏ thành công",HttpStatus.OK);
     }
     @GetMapping("{id}")

@@ -1,14 +1,14 @@
 package com.example.QuanLyBanHang.FormCreateandUpdate;
 
 import com.example.QuanLyBanHang.Dto.ProductImageDTO;
-import com.example.QuanLyBanHang.entity.Category;
-import com.example.QuanLyBanHang.entity.ProductImage;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
+
 @Data // lombok giúp generate các hàm constructor, get, set v.v.
 @Getter
 @Setter
@@ -22,8 +22,8 @@ public class FormCreateProduct {
     private Date createdAt;
     private int price;
     private int quantity;
-    private ProductImageDTO productImages;
-    private int categoryId;
+    private List<ProductImageDTO> productImages;
+    private int category_id;
     public FormCreateProduct() {
     }
 

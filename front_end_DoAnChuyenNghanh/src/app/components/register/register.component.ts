@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
@@ -14,7 +14,6 @@ export class  RegisterComponent   {
     user_name : new FormControl('',[Validators.required]),
     password :new FormControl('',[Validators.required]),
     email : new FormControl('',[Validators.required],),
-
     full_name : new FormControl('',[Validators.required]),
     phone_number : new FormControl('',[Validators.required])
 
@@ -34,12 +33,11 @@ export class  RegisterComponent   {
     if (this.registerForm.invalid) {
       console.log('Form is invalid', this.registerForm.value);
       console.log('Form is invalid', this.registerForm.invalid);
-
       return;
     }
 
 
-    console.log(this.registerForm.value)
+    // console.log(this.registerForm.value)
   this.register.register(this.registerForm.value).subscribe((res: any)=>
   {
     if (res == null) {
@@ -55,8 +53,11 @@ export class  RegisterComponent   {
 
   },(error: HttpErrorResponse) =>
       {
-        console.error('Error:', error.error);
-        alert(error.statusText)
+
+        console.log('Error:', error.error);
+        alert(error.error)
+        // alert(error)
+
 
       }
       );

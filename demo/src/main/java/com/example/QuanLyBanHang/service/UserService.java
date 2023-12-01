@@ -3,6 +3,7 @@ package com.example.QuanLyBanHang.service;
 
 //import com.example.QuanLyBanHang.Dto.UserCreateForm;
 import com.example.QuanLyBanHang.FormCreateandUpdate.FormCreateUser;
+import com.example.QuanLyBanHang.FormCreateandUpdate.FromUpdateUser;
 import com.example.QuanLyBanHang.entity.User;
 
 import java.util.List;
@@ -13,12 +14,12 @@ public interface UserService {
 	User createUser(FormCreateUser form);
 	User saveUser(User user);
 
-	User loginUserNameadnPassword(String  userName,String Password);
+
 	User getUserById(int id);
 
 	User getUserByUser_nameandRole(String name, String role);
 
-	User updateUser(User user);
+	User updateUser(int id ,FromUpdateUser user);
 
 	void deleteUserById(int id);
 	

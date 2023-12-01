@@ -1,9 +1,11 @@
 package com.example.QuanLyBanHang.Dto;
 
-import com.example.QuanLyBanHang.entity.ProductImage;
+import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
+@Data
 
 public class ProductDto {
     private int id;
@@ -16,7 +18,38 @@ public class ProductDto {
     private int price;
     private int quantity;
     private int category_id;
-    private List<ProductImageDTO> productImages;
+     private List<ProductImageDTO> productImage;
+
+
+    public ProductDto(int id, String productName, String description, int sold, int isActive, int isSelling, Date createdAt, int price, int quantity, int category_id, List<ProductImageDTO> productImage) {
+        this.id = id;
+        this.productName = productName;
+        this.description = description;
+        this.sold = sold;
+        this.isActive = isActive;
+        this.isSelling = isSelling;
+        this.createdAt = createdAt;
+        this.price = price;
+        this.quantity = quantity;
+        this.category_id = category_id;
+        this.productImage = productImage;
+    }
+
+    public List<ProductImageDTO> getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(List<ProductImageDTO> productImage) {
+        this.productImage = productImage;
+    }
+
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
+    }
 
 
 
@@ -100,27 +133,7 @@ public class ProductDto {
         this.category_id = categoryName;
     }
 
-    public List<ProductImageDTO> getProductImages() {
-        return productImages;
-    }
 
-    public void setProductImages(List<ProductImageDTO> productImages) {
-        this.productImages = productImages;
-    }
-
-    public ProductDto(int id, String productName, String description, int sold, int isActive, int isSelling, Date createdAt, int price, int quantity, int category_id, List<ProductImageDTO> productImages) {
-        this.id = id;
-        this.productName = productName;
-        this.description = description;
-        this.sold = sold;
-        this.isActive = isActive;
-        this.isSelling = isSelling;
-        this.createdAt = createdAt;
-        this.price = price;
-        this.quantity = quantity;
-        this.category_id = category_id;
-        this.productImages = productImages;
-    }
 
     public ProductDto() {
     }

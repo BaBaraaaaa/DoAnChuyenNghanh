@@ -1,17 +1,15 @@
 package com.example.QuanLyBanHang.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Data // lombok giúp generate các hàm constructor, get, set v.v.
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "product_image")
-public class ProductImage implements Serializable {
+public class ProductImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,47 +19,7 @@ public class ProductImage implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Product product;
-
-    public ProductImage() {
-    }
-
-    @Override
-    public String toString() {
-        return "ProductImage{" +
-                "id=" + id +
-                ", url_Image='" + url_Image + '\'' +
-                ", product=" + product +
-                '}';
-    }
-
-    public ProductImage(int id, String url_Image, Product product) {
-        this.id = id;
-        this.url_Image = url_Image;
-        this.product = product;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUrl_Image() {
-        return url_Image;
-    }
-
-    public void setUrl_Image(String url_Image) {
-        this.url_Image = url_Image;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }

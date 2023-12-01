@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-const api = 'http://localhost:8080/api/v1/auth/';
+const api = 'http://localhost:8080/api/v1/auth';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,13 @@ export class LoginService {
 
   login(body : any): any
   {
-    return this.http.post<any>(`${api}login`,body);
+    const headers = new HttpHeaders();
+    headers.set(
+      'Access-Control-Allow-Origin','*'
+    );
+
+    return this.http.post<any>(`${api}/login`,body,{headers});
+
   }
   checkLogin() :any {
 
@@ -20,6 +27,22 @@ export class LoginService {
       return JSON.parse(jsonData);
     }
       return false;
+  }
+  checkRole():boolean
+  {
+    let checkrole = this.checkLogin();
+    if(checkrole)
+    {
+      for(var a of checkrole.roles)
+      {
+        if(a.name =="Admin")
+        {
+          return true;
+        }
+      }
+
+    }
+    return false;
   }
 
 }

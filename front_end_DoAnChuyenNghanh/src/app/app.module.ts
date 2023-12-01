@@ -17,6 +17,7 @@ import { RegisterComponent } from './components/register/register.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { CartComponent } from './components/cart/cart.component';
 import { ShopComponent } from './components/shop/shop.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { ShopComponent } from './components/shop/shop.component';
     LoginComponent,
     RegisterComponent,
     CartComponent,
-    ShopComponent
+    ShopComponent,
+
   ],
   imports: [
     BrowserModule,

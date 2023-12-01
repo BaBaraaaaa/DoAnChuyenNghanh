@@ -4,10 +4,12 @@ package com.example.QuanLyBanHang.service.impl;
 
 //import com.example.QuanLyBanHang.Dto.UserCreateForm;
 import com.example.QuanLyBanHang.FormCreateandUpdate.FormCreateUser;
+import com.example.QuanLyBanHang.FormCreateandUpdate.FromUpdateUser;
 import com.example.QuanLyBanHang.entity.User;
 import com.example.QuanLyBanHang.repository.UserRepository;
 import com.example.QuanLyBanHang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public List<User> getAllUser() {
@@ -28,15 +32,19 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(user);
 	}
 
-	@Override
-	public User loginUserNameadnPassword(String  userName,String Password) {
 
-		return userRepository.findByUsernameAndPassword(userName,Password);
-	}
 
 	@Override
-	public User updateUser(User user) {
-		return null;
+	public User updateUser(int id ,FromUpdateUser user) {
+		User user1  = userRepository.findById(id).get();
+
+		user1.setPhone_Number(user.getPhone_number());
+		user1.setFull_name(user.getFull_name());
+		user1.setAvatar(user.getAvatar());
+		user1.setEmail(user.getEmail());
+		user1.setPassword(passwordEncoder.encode(user.getPassword()));
+
+		return	userRepository.save(user1);
 	}
 
 	@Override
